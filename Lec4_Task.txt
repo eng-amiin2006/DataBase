@@ -1,0 +1,47 @@
+========================================================
+  DATABASE - LECTURE 4  |  QUICK SUMMARY
+========================================================
+
+-- Version 1:
+CREATE TABLE directors
+    (director_id NUMBER CONSTRAINT dir_did_pk PRIMARY KEY, ...);
+
+-- Version 2:
+CREATE TABLE directors
+    (director_id NUMBER NOT NULL UNIQUE, ...);
+
+--------------------------------------------------------
+WHAT THEY SHARE
+--------------------------------------------------------
+  - Both reject NULL and duplicate values on director_id
+  - Stored data is identical
+
+--------------------------------------------------------
+KEY DIFFERENCES
+--------------------------------------------------------
+
+  Feature          | PRIMARY KEY          | NOT NULL + UNIQUE
+  -----------------|----------------------|-------------------
+  Constraint name  | Yes (dir_did_pk)     | No (anonymous)
+  Per table        | Only 1 allowed       | Many allowed
+  FK target        | Standard             | Oracle only
+  Index type       | Clustered (faster)   | Non-clustered
+  Role             | Row identity         | Extra uniqueness
+
+--------------------------------------------------------
+WHEN TO USE
+--------------------------------------------------------
+
+  PRIMARY KEY    --> main ID column (director_id, student_id)
+  NOT NULL UNIQUE --> secondary unique columns (email, phone)
+
+--------------------------------------------------------
+VERDICT
+--------------------------------------------------------
+
+  For director_id --> use PRIMARY KEY
+  - It's the row identity
+  - Named constraint is easier to manage later
+  - Standard FK target for other tables
+
+========================================================
